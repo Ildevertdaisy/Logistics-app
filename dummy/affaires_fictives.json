@@ -1,0 +1,497 @@
+[
+    {
+        "titre": "Trafic de drogue",
+        "description": "Trafic de drogue",
+        "date": "2024-03-22T00:00:00",
+        "lieux": [
+            "Lille"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Homicide volontaire",
+        "description": "Homicide volontaire",
+        "date": "2024-09-16T00:00:00",
+        "lieux": [
+            "Grenoble"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Trafic de drogue",
+        "description": "Trafic de drogue",
+        "date": "2024-12-20T00:00:00",
+        "lieux": [
+            "Dijon"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Vol à main armée",
+        "description": "Vol à main armée",
+        "date": "2024-07-09T00:00:00",
+        "lieux": [
+            "Rennes"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Falsification de documents",
+        "description": "Falsification de documents",
+        "date": "2024-01-11T00:00:00",
+        "lieux": [
+            "Paris"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Trafic de drogue",
+        "description": "Trafic de drogue",
+        "date": "2024-06-10T00:00:00",
+        "lieux": [
+            "Nantes"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Piraterie informatique",
+        "description": "Piraterie informatique",
+        "date": "2024-07-25T00:00:00",
+        "lieux": [
+            "Reims"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Incendie criminel",
+        "description": "Incendie criminel",
+        "date": "2024-06-29T00:00:00",
+        "lieux": [
+            "Bordeaux"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Escroquerie",
+        "description": "Escroquerie",
+        "date": "2024-04-24T00:00:00",
+        "lieux": [
+            "Paris"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Blanchiment d'argent",
+        "description": "Blanchiment d'argent",
+        "date": "2024-05-08T00:00:00",
+        "lieux": [
+            "Grenoble"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Braquage de bijouterie",
+        "description": "Braquage de bijouterie",
+        "date": "2024-11-20T00:00:00",
+        "lieux": [
+            "Le Havre"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Cambriolage",
+        "description": "Cambriolage",
+        "date": "2024-11-20T00:00:00",
+        "lieux": [
+            "Reims"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Détournement de fonds",
+        "description": "Détournement de fonds",
+        "date": "2024-01-26T00:00:00",
+        "lieux": [
+            "Dijon"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Falsification de documents",
+        "description": "Falsification de documents",
+        "date": "2024-05-03T00:00:00",
+        "lieux": [
+            "Strasbourg"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Détournement de fonds",
+        "description": "Détournement de fonds",
+        "date": "2024-10-26T00:00:00",
+        "lieux": [
+            "Nice"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Détournement de fonds",
+        "description": "Détournement de fonds",
+        "date": "2024-09-15T00:00:00",
+        "lieux": [
+            "Lille"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Cambriolage",
+        "description": "Cambriolage",
+        "date": "2024-12-28T00:00:00",
+        "lieux": [
+            "Dijon"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Détournement de fonds",
+        "description": "Détournement de fonds",
+        "date": "2024-12-31T00:00:00",
+        "lieux": [
+            "Reims"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Braquage de bijouterie",
+        "description": "Braquage de bijouterie",
+        "date": "2024-02-03T00:00:00",
+        "lieux": [
+            "Grenoble"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Agression",
+        "description": "Agression",
+        "date": "2024-07-18T00:00:00",
+        "lieux": [
+            "Marseille"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Agression",
+        "description": "Agression",
+        "date": "2024-11-30T00:00:00",
+        "lieux": [
+            "Le Havre"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Blanchiment d'argent",
+        "description": "Blanchiment d'argent",
+        "date": "2024-07-21T00:00:00",
+        "lieux": [
+            "Dijon"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Braquage de bijouterie",
+        "description": "Braquage de bijouterie",
+        "date": "2024-06-28T00:00:00",
+        "lieux": [
+            "Dijon"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Homicide volontaire",
+        "description": "Homicide volontaire",
+        "date": "2024-01-20T00:00:00",
+        "lieux": [
+            "Lyon"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Homicide volontaire",
+        "description": "Homicide volontaire",
+        "date": "2024-09-01T00:00:00",
+        "lieux": [
+            "Dijon"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Homicide volontaire",
+        "description": "Homicide volontaire",
+        "date": "2024-06-11T00:00:00",
+        "lieux": [
+            "Montpellier"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Homicide volontaire",
+        "description": "Homicide volontaire",
+        "date": "2024-02-01T00:00:00",
+        "lieux": [
+            "Bordeaux"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Enlèvement",
+        "description": "Enlèvement",
+        "date": "2024-11-20T00:00:00",
+        "lieux": [
+            "Montpellier"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Piraterie informatique",
+        "description": "Piraterie informatique",
+        "date": "2024-05-31T00:00:00",
+        "lieux": [
+            "Marseille"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Falsification de documents",
+        "description": "Falsification de documents",
+        "date": "2024-08-02T00:00:00",
+        "lieux": [
+            "Grenoble"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Vol à main armée",
+        "description": "Vol à main armée",
+        "date": "2024-08-11T00:00:00",
+        "lieux": [
+            "Montpellier"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Cambriolage",
+        "description": "Cambriolage",
+        "date": "2024-03-17T00:00:00",
+        "lieux": [
+            "Lille"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Escroquerie",
+        "description": "Escroquerie",
+        "date": "2024-03-13T00:00:00",
+        "lieux": [
+            "Rennes"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Braquage de bijouterie",
+        "description": "Braquage de bijouterie",
+        "date": "2024-07-05T00:00:00",
+        "lieux": [
+            "Montpellier"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Fraude bancaire",
+        "description": "Fraude bancaire",
+        "date": "2024-04-07T00:00:00",
+        "lieux": [
+            "Marseille"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Vol à main armée",
+        "description": "Vol à main armée",
+        "date": "2024-10-14T00:00:00",
+        "lieux": [
+            "Lille"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Trafic de drogue",
+        "description": "Trafic de drogue",
+        "date": "2024-10-06T00:00:00",
+        "lieux": [
+            "Lille"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Vol à main armée",
+        "description": "Vol à main armée",
+        "date": "2024-08-23T00:00:00",
+        "lieux": [
+            "Marseille"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Braquage de bijouterie",
+        "description": "Braquage de bijouterie",
+        "date": "2024-07-03T00:00:00",
+        "lieux": [
+            "Paris"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Enlèvement",
+        "description": "Enlèvement",
+        "date": "2024-12-26T00:00:00",
+        "lieux": [
+            "Rennes"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Trafic de drogue",
+        "description": "Trafic de drogue",
+        "date": "2024-04-09T00:00:00",
+        "lieux": [
+            "Rennes"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Escroquerie",
+        "description": "Escroquerie",
+        "date": "2024-05-19T00:00:00",
+        "lieux": [
+            "Dijon"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Falsification de documents",
+        "description": "Falsification de documents",
+        "date": "2024-08-12T00:00:00",
+        "lieux": [
+            "Toulouse"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Blanchiment d'argent",
+        "description": "Blanchiment d'argent",
+        "date": "2024-11-30T00:00:00",
+        "lieux": [
+            "Nice"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    },
+    {
+        "titre": "Trafic de drogue",
+        "description": "Trafic de drogue",
+        "date": "2024-04-30T00:00:00",
+        "lieux": [
+            "Marseille"
+        ],
+        "suspects": [],
+        "temoins": [],
+        "telephonie": []
+    }
+]
