@@ -7,8 +7,8 @@ import logging
 
 from db_connection import ping_mongo_db_server, mongo_connection
 from graph_db_connection import verify_connectivity, driver
-from graphql.schema import type_defs
-from graphql.resolvers import resolvers
+from app_graphql.schema import type_defs
+from app_graphql.resolvers import resolvers
 
 # Configuration du logging
 logging.basicConfig(level=logging.INFO)
