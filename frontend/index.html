@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explorateur GraphQL - Richnou Galap</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="main.js"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen">
+  <header class="bg-white shadow-sm border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div>
+        <p class="text-sm text-slate-500 uppercase tracking-wide">Richnou Galap</p>
+        <h1 class="text-2xl font-bold text-slate-800">Explorateur GraphQL</h1>
+        <p class="text-sm text-slate-500">Interagissez avec l'API logistique sans dépendances lourdes</p>
+      </div>
+      <div class="hidden md:flex items-center gap-2 text-xs text-slate-500 bg-slate-100 px-3 py-2 rounded-full">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span>FastAPI + Ariadne</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-6 space-y-6">
+    <section class="bg-white border border-slate-200 rounded-2xl shadow-sm p-6 space-y-4">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <label class="w-full md:w-auto font-semibold text-slate-700" for="endpoint">Endpoint GraphQL</label>
+        <input id="endpoint" type="url" value="http://localhost:8000/graphql" class="w-full md:w-2/3 rounded-xl border border-slate-200 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+      </div>
+      <div class="grid md:grid-cols-2 gap-3 text-sm text-slate-600">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+          <span>Compatible avec toute instance Ariadne/FastAPI</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+          <span>Prend en charge les variables et requêtes personnalisées</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 bg-white border border-slate-200 rounded-2xl shadow-sm p-6 space-y-4">
+        <div class="flex flex-wrap gap-3 items-center">
+          <h2 class="text-lg font-semibold text-slate-800">Requête GraphQL</h2>
+          <div class="flex gap-2 text-xs">
+            <button data-template="hydravions" class="template-btn bg-slate-100 text-slate-700 px-3 py-1 rounded-full hover:bg-slate-200">Hydravions</button>
+            <button data-template="clients" class="template-btn bg-slate-100 text-slate-700 px-3 py-1 rounded-full hover:bg-slate-200">Clients</button>
+            <button data-template="ports" class="template-btn bg-slate-100 text-slate-700 px-3 py-1 rounded-full hover:bg-slate-200">Ports</button>
+            <button data-template="routes" class="template-btn bg-slate-100 text-slate-700 px-3 py-1 rounded-full hover:bg-slate-200">Route optimale</button>
+          </div>
+        </div>
+        <textarea id="query" class="w-full h-64 font-mono text-sm rounded-xl border border-slate-200 p-4 focus:outline-none focus:ring-2 focus:ring-emerald-500" spellcheck="false"></textarea>
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <label class="font-semibold text-slate-700" for="variables">Variables (JSON)</label>
+            <span class="text-xs text-slate-500">Optionnel</span>
+          </div>
+          <textarea id="variables" class="w-full h-24 font-mono text-sm rounded-xl border border-slate-200 p-3 focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder='{"cle": "valeur"}' spellcheck="false"></textarea>
+        </div>
+        <div class="flex flex-wrap gap-3 items-center">
+          <button id="execute" class="px-5 py-2 bg-emerald-600 text-white font-semibold rounded-xl shadow hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">Exécuter</button>
+          <span id="status" class="text-sm text-slate-500">En attente...</span>
+        </div>
+      </div>
+
+      <div class="bg-slate-900 text-slate-100 rounded-2xl shadow-inner border border-slate-800 p-4 flex flex-col gap-3">
+        <div class="flex items-center justify-between">
+          <h3 class="font-semibold text-sm">Résultat</h3>
+          <button id="copy-result" class="text-xs px-3 py-1 bg-slate-800 rounded-lg hover:bg-slate-700">Copier</button>
+        </div>
+        <pre id="result" class="bg-slate-950/50 text-emerald-100 rounded-lg p-3 h-96 overflow-auto text-xs">Envoyez une requête pour voir la réponse...</pre>
+      </div>
+    </section>
+
+    <section class="bg-white border border-slate-200 rounded-2xl shadow-sm p-6">
+      <h2 class="text-lg font-semibold text-slate-800 mb-3">Astuces rapides</h2>
+      <ul class="list-disc pl-5 space-y-2 text-sm text-slate-600">
+        <li>Le bouton "Templates" insère automatiquement des requêtes courantes pour explorer l'API.</li>
+        <li>Les variables doivent être fournies au format JSON et correspondent aux paramètres de la requête.</li>
+        <li>Le serveur expose également <code class="px-2 py-1 bg-slate-100 rounded">/graphql</code> pour l'inspection via un navigateur ou votre outil favori.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
