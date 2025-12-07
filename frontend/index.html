@@ -3,493 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Richnou Galap - Galapagos Logistics</title>
+    <title>Galapagos Logistics - API GraphQL</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .tab-active {
-            @apply border-b-2 border-blue-500 text-blue-600 bg-blue-50;
-        }
-        .hidden {
-            display: none;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .fade-in {
-            animation: fadeIn 0.3s ease-in;
-        }
-    </style>
 </head>
-<body class="bg-gradient-to-br from-blue-50 to-cyan-50 min-h-screen">
-    <!-- Header -->
-    <header class="bg-gradient-to-r from-blue-600 to-cyan-600 shadow-lg">
-        <div class="container mx-auto px-6 py-6">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h1 class="text-4xl font-bold text-white flex items-center gap-3">
-                        ✈️ Richnou Galap
-                    </h1>
-                    <p class="text-blue-100 mt-1">Gestion logistique des îles Galapagos</p>
-                </div>
-                <div class="text-right text-white">
-                    <div class="text-sm opacity-90">Système de livraison</div>
-                    <div class="text-xs opacity-75">Par hydravion</div>
-                </div>
-            </div>
-        </div>
-    </header>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-7xl mx-auto">
+        <h1 class="text-4xl font-bold text-blue-600 mb-2">🏝️ Galapagos Logistics</h1>
+        <p class="text-gray-600 mb-8">Interface de visualisation GraphQL</p>
 
-    <!-- Navigation Tabs -->
-    <nav class="bg-white shadow-md">
-        <div class="container mx-auto px-6">
-            <ul class="flex space-x-1 overflow-x-auto">
-                <li>
-                    <button onclick="switchTab('dashboard')" id="tab-dashboard"
-                            class="py-4 px-6 font-semibold tab-active whitespace-nowrap">
-                        📊 Dashboard
-                    </button>
-                </li>
-                <li>
-                    <button onclick="switchTab('hydravions')" id="tab-hydravions"
-                            class="py-4 px-6 font-semibold text-gray-600 hover:text-blue-600 hover:bg-blue-50 whitespace-nowrap">
-                        ✈️ Hydravions
-                    </button>
-                </li>
-                <li>
-                    <button onclick="switchTab('commandes')" id="tab-commandes"
-                            class="py-4 px-6 font-semibold text-gray-600 hover:text-blue-600 hover:bg-blue-50 whitespace-nowrap">
-                        📦 Commandes
-                    </button>
-                </li>
-                <li>
-                    <button onclick="switchTab('clients')" id="tab-clients"
-                            class="py-4 px-6 font-semibold text-gray-600 hover:text-blue-600 hover:bg-blue-50 whitespace-nowrap">
-                        👥 Clients
-                    </button>
-                </li>
-                <li>
-                    <button onclick="switchTab('produits')" id="tab-produits"
-                            class="py-4 px-6 font-semibold text-gray-600 hover:text-blue-600 hover:bg-blue-50 whitespace-nowrap">
-                        🔬 Produits
-                    </button>
-                </li>
-                <li>
-                    <button onclick="switchTab('iles')" id="tab-iles"
-                            class="py-4 px-6 font-semibold text-gray-600 hover:text-blue-600 hover:bg-blue-50 whitespace-nowrap">
-                        🏝️ Îles & Ports
-                    </button>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="container mx-auto px-6 py-8">
-
-        <!-- Dashboard Section -->
-        <div id="section-dashboard" class="section">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6">Vue d'ensemble</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-500">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-gray-600 text-sm">Hydravions</p>
-                            <p id="stat-hydravions" class="text-3xl font-bold text-gray-800">-</p>
-                        </div>
-                        <div class="text-4xl">✈️</div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-green-500">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-gray-600 text-sm">Commandes actives</p>
-                            <p id="stat-commandes" class="text-3xl font-bold text-gray-800">-</p>
-                        </div>
-                        <div class="text-4xl">📦</div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-purple-500">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-gray-600 text-sm">Clients</p>
-                            <p id="stat-clients" class="text-3xl font-bold text-gray-800">-</p>
-                        </div>
-                        <div class="text-4xl">👥</div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-yellow-500">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-gray-600 text-sm">Produits</p>
-                            <p id="stat-produits" class="text-3xl font-bold text-gray-800">-</p>
-                        </div>
-                        <div class="text-4xl">🔬</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Livraisons en cours -->
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h3 class="text-xl font-bold text-gray-800 mb-4">Livraisons en cours</h3>
-                <div id="livraisons-en-cours" class="space-y-3">
-                    <!-- Sera rempli dynamiquement -->
-                </div>
-            </div>
+        <!-- Navigation simple -->
+        <div class="flex gap-2 mb-6">
+            <button onclick="charger('hydravions')" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Hydravions</button>
+            <button onclick="charger('clients')" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Clients</button>
+            <button onclick="charger('commandes')" class="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600">Commandes</button>
+            <button onclick="charger('iles')" class="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600">Îles</button>
+            <button onclick="charger('produits')" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Produits</button>
         </div>
 
-        <!-- Hydravions Section -->
-        <div id="section-hydravions" class="section hidden">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Formulaire création hydravion -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">➕ Ajouter un hydravion</h2>
-                    <form id="form-hydravion" class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Nom de l'hydravion</label>
-                            <input type="text" id="hydravion-nom" required
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Modèle</label>
-                            <select id="hydravion-modele" required
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                <option value="">Sélectionner un modèle</option>
-                                <option value="petit">Petit (50 caisses, 15L/100km)</option>
-                                <option value="moyen">Moyen (100 caisses, 20L/100km)</option>
-                                <option value="grand">Grand (150 caisses, 25L/100km)</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Statut</label>
-                            <select id="hydravion-statut" required
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                <option value="entrepot">Entrepôt</option>
-                                <option value="port">Port</option>
-                                <option value="en_vol">En vol</option>
-                                <option value="maintenance">Maintenance</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Port actuel (optionnel)</label>
-                            <input type="text" id="hydravion-port"
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        </div>
-                        <button type="submit"
-                                class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition duration-200 font-semibold">
-                            Créer l'hydravion
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Liste des hydravions -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-2xl font-bold text-gray-800">Liste des hydravions</h2>
-                        <button onclick="chargerHydravions()"
-                                class="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-200">
-                            🔄 Rafraîchir
-                        </button>
-                    </div>
-                    <div id="liste-hydravions" class="space-y-3 max-h-[600px] overflow-y-auto">
-                        <!-- Les hydravions seront affichés ici -->
-                    </div>
-                </div>
-            </div>
+        <!-- Zone d'affichage -->
+        <div id="resultats" class="bg-white rounded-lg shadow p-6">
+            <p class="text-gray-500">Cliquez sur un bouton pour afficher les données</p>
         </div>
-
-        <!-- Commandes Section -->
-        <div id="section-commandes" class="section hidden">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Formulaire création commande -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">➕ Créer une commande</h2>
-                    <form id="form-commande" class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Client ID</label>
-                            <input type="text" id="commande-client-id" required
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                   placeholder="ID du client">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Port de destination</label>
-                            <input type="text" id="commande-port" required
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Priorité (1-5)</label>
-                            <input type="number" id="commande-priorite" min="1" max="5" value="1" required
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Date de livraison souhaitée</label>
-                            <input type="datetime-local" id="commande-date"
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        </div>
-                        <div id="produits-commande" class="space-y-2">
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Produits</label>
-                            <div class="flex gap-2">
-                                <input type="text" id="produit-id-temp" placeholder="ID Produit"
-                                       class="flex-1 px-4 py-2 border border-gray-300 rounded-lg">
-                                <input type="number" id="produit-quantite-temp" placeholder="Qté" min="1" value="1"
-                                       class="w-24 px-4 py-2 border border-gray-300 rounded-lg">
-                                <button type="button" onclick="ajouterProduitCommande()"
-                                        class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
-                                    +
-                                </button>
-                            </div>
-                            <div id="liste-produits-temp" class="mt-2 space-y-1"></div>
-                        </div>
-                        <button type="submit"
-                                class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition duration-200 font-semibold">
-                            Créer la commande
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Liste des commandes -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-2xl font-bold text-gray-800">Liste des commandes</h2>
-                        <button onclick="chargerCommandes()"
-                                class="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-200">
-                            🔄 Rafraîchir
-                        </button>
-                    </div>
-                    <div id="liste-commandes" class="space-y-3 max-h-[600px] overflow-y-auto">
-                        <!-- Les commandes seront affichées ici -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Clients Section -->
-        <div id="section-clients" class="section hidden">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Formulaire création client -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">➕ Ajouter un client</h2>
-                    <form id="form-client" class="space-y-4">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Nom</label>
-                                <input type="text" id="client-nom" required
-                                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Prénom</label>
-                                <input type="text" id="client-prenom" required
-                                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                            <input type="email" id="client-email" required
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Téléphone</label>
-                            <input type="tel" id="client-telephone" required
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Rôle</label>
-                            <select id="client-role" required
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                <option value="">Sélectionner un rôle</option>
-                                <option value="volcanologue">Volcanologue</option>
-                                <option value="biologiste_marin">Biologiste marin</option>
-                                <option value="zoologue">Zoologue</option>
-                                <option value="botaniste">Botaniste</option>
-                                <option value="geologue">Géologue</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Organisation</label>
-                            <input type="text" id="client-organisation" required
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Île principale</label>
-                            <input type="text" id="client-ile" required
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        </div>
-                        <button type="submit"
-                                class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition duration-200 font-semibold">
-                            Créer le client
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Liste des clients -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-2xl font-bold text-gray-800">Liste des clients</h2>
-                        <button onclick="chargerClients()"
-                                class="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-200">
-                            🔄 Rafraîchir
-                        </button>
-                    </div>
-                    <div id="liste-clients" class="space-y-3 max-h-[600px] overflow-y-auto">
-                        <!-- Les clients seront affichés ici -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Produits Section -->
-        <div id="section-produits" class="section hidden">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Formulaire création produit -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">➕ Ajouter un produit</h2>
-                    <form id="form-produit" class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Nom du produit</label>
-                            <input type="text" id="produit-nom" required
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                            <textarea id="produit-description" required rows="3"
-                                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Catégorie</label>
-                            <select id="produit-categorie" required
-                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                <option value="">Sélectionner une catégorie</option>
-                                <option value="equipement_plongee">Équipement plongée</option>
-                                <option value="materiel_laboratoire">Matériel laboratoire</option>
-                                <option value="equipement_observation">Équipement observation</option>
-                                <option value="materiel_camping">Matériel camping</option>
-                                <option value="echantillons">Échantillons</option>
-                                <option value="medicaments">Médicaments</option>
-                            </select>
-                        </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Poids (kg)</label>
-                                <input type="number" id="produit-poids" step="0.1" required
-                                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Stock initial</label>
-                                <input type="number" id="produit-stock" required
-                                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-3 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Hauteur (cm)</label>
-                                <input type="number" id="produit-hauteur" step="0.1" required
-                                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Largeur (cm)</label>
-                                <input type="number" id="produit-largeur" step="0.1" required
-                                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Profondeur (cm)</label>
-                                <input type="number" id="produit-profondeur" step="0.1" required
-                                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            </div>
-                        </div>
-                        <button type="submit"
-                                class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition duration-200 font-semibold">
-                            Créer le produit
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Liste des produits -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-2xl font-bold text-gray-800">Liste des produits</h2>
-                        <button onclick="chargerProduits()"
-                                class="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-200">
-                            🔄 Rafraîchir
-                        </button>
-                    </div>
-                    <div id="liste-produits" class="space-y-3 max-h-[600px] overflow-y-auto">
-                        <!-- Les produits seront affichés ici -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Îles & Ports Section -->
-        <div id="section-iles" class="section hidden">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Formulaire création île -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">➕ Ajouter une île</h2>
-                    <form id="form-ile" class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Nom de l'île</label>
-                            <input type="text" id="ile-nom" required
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Latitude</label>
-                                <input type="number" id="ile-latitude" step="any" required
-                                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Longitude</label>
-                                <input type="number" id="ile-longitude" step="any" required
-                                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Superficie (km²)</label>
-                                <input type="number" id="ile-superficie" step="0.1" required
-                                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Population</label>
-                                <input type="number" id="ile-population"
-                                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                            <textarea id="ile-description" required rows="3"
-                                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
-                        </div>
-                        <button type="submit"
-                                class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition duration-200 font-semibold">
-                            Créer l'île
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Liste des îles -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-2xl font-bold text-gray-800">Liste des îles</h2>
-                        <button onclick="chargerIles()"
-                                class="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-200">
-                            🔄 Rafraîchir
-                        </button>
-                    </div>
-                    <div id="liste-iles" class="space-y-3 max-h-[600px] overflow-y-auto">
-                        <!-- Les îles seront affichées ici -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- Toast Notification -->
-    <div id="toast" class="hidden fixed bottom-4 right-4 bg-gray-800 text-white px-6 py-3 rounded-lg shadow-lg z-50">
-        <p id="toast-message"></p>
     </div>
 
-    <script src="app.js"></script>
+    <script>
+        const API_URL = 'http://localhost:8001/graphql';
+
+        async function graphql(query) {
+            const res = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query })
+            });
+            const data = await res.json();
+            return data.data;
+        }
+
+        async function charger(type) {
+            const queries = {
+                hydravions: `{ hydravions { id nom modele statut capacite_caisses port_actuel } }`,
+                clients: `{ clients { id nom prenom email role organisation ile_principale } }`,
+                commandes: `{ commandes { id port_destination statut priorite nombre_caisses_requises client { nom prenom } } }`,
+                iles: `{ iles { nom superficie population description coordonnees { latitude longitude } } }`,
+                produits: `{ produits { id nom categorie poids stock_disponible } }`
+            };
+
+            const data = await graphql(queries[type]);
+            afficher(type, data[type]);
+        }
+
+        function afficher(type, items) {
+            const div = document.getElementById('resultats');
+
+            if (!items || items.length === 0) {
+                div.innerHTML = '<p class="text-gray-500">Aucune donnée</p>';
+                return;
+            }
+
+            const templates = {
+                hydravions: h => `
+                    <div class="border p-4 rounded mb-2">
+                        <h3 class="font-bold">${h.nom}</h3>
+                        <p class="text-sm text-gray-600">Modèle: ${h.modele} | Statut: ${h.statut}</p>
+                        <p class="text-sm text-gray-600">Capacité: ${h.capacite_caisses} caisses</p>
+                    </div>`,
+
+                clients: c => `
+                    <div class="border p-4 rounded mb-2">
+                        <h3 class="font-bold">${c.prenom} ${c.nom}</h3>
+                        <p class="text-sm text-gray-600">${c.role} - ${c.organisation}</p>
+                        <p class="text-sm text-gray-600">Île: ${c.ile_principale} | Email: ${c.email}</p>
+                    </div>`,
+
+                commandes: cmd => `
+                    <div class="border p-4 rounded mb-2">
+                        <h3 class="font-bold">Commande → ${cmd.port_destination}</h3>
+                        <p class="text-sm text-gray-600">Client: ${cmd.client ? cmd.client.prenom + ' ' + cmd.client.nom : 'N/A'}</p>
+                        <p class="text-sm text-gray-600">Statut: ${cmd.statut} | Priorité: ${cmd.priorite} | Caisses: ${cmd.nombre_caisses_requises}</p>
+                    </div>`,
+
+                iles: i => `
+                    <div class="border p-4 rounded mb-2">
+                        <h3 class="font-bold">🏝️ ${i.nom}</h3>
+                        <p class="text-sm text-gray-600">${i.description}</p>
+                        <p class="text-sm text-gray-600">Superficie: ${i.superficie} km² | Population: ${i.population || 0}</p>
+                        <p class="text-sm text-gray-600">Coords: ${i.coordonnees.latitude.toFixed(2)}, ${i.coordonnees.longitude.toFixed(2)}</p>
+                    </div>`,
+
+                produits: p => `
+                    <div class="border p-4 rounded mb-2">
+                        <h3 class="font-bold">${p.nom}</h3>
+                        <p class="text-sm text-gray-600">Catégorie: ${p.categorie}</p>
+                        <p class="text-sm text-gray-600">Poids: ${p.poids} kg | Stock: ${p.stock_disponible}</p>
+                    </div>`
+            };
+
+            div.innerHTML = `
+                <h2 class="text-2xl font-bold mb-4">${type.charAt(0).toUpperCase() + type.slice(1)} (${items.length})</h2>
+                ${items.map(templates[type]).join('')}
+            `;
+        }
+    </script>
 </body>
 </html>
