@@ -31,16 +31,18 @@ def serialize_mongo_doc(doc):
     """Convertir un document MongoDB en dict avec id au lieu de _id"""
     if doc is None:
         return None
-    doc["id"] = str(doc["_id"])
-    return doc
+
+    # Créer une copie pour ne pas muter le document Motor original
+    serialized = {**doc}
+    serialized["id"] = str(doc["_id"])
+    serialized.pop("_id", None)
+    return serialized
 
 
 async def fetch_collection(collection):
     """Récupère tous les documents d'une collection et sérialise leur identifiant."""
-    documents = []
-    async for doc in collection.find({}):
-        documents.append(serialize_mongo_doc(doc))
-    return documents
+    documents = await collection.find({}).to_list(length=None)
+    return [serialize_mongo_doc(doc) for doc in documents]
 
 
 async def get_client_by_id(db, client_id):
