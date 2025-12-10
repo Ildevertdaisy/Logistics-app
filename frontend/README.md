@@ -4,6 +4,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+## GraphQL API configuration
+
+Set the GraphQL endpoint through the environment variable
+`REACT_APP_GRAPHQL_URI` (for example `http://localhost:8001/graphql` when
+running via `docker-compose`). If you don't set it, the frontend will default
+to the same host on port `8001`.
+
 In the project directory, you can run:
 
 ### `npm start`

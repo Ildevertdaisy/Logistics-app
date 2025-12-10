@@ -11,8 +11,13 @@ import {
 import './App.css';
 
 // Config Apollo (backend en local)
+const defaultGraphqlUri =
+  typeof window !== 'undefined'
+    ? `${window.location.protocol}//${window.location.hostname}:8001/graphql`
+    : 'http://localhost:8001/graphql';
+
 const client = new ApolloClient({
-  uri: 'http://localhost:8000/graphql',
+  uri: process.env.REACT_APP_GRAPHQL_URI || defaultGraphqlUri,
   cache: new InMemoryCache(),
 });
 
