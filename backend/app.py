@@ -4,6 +4,7 @@ from ariadne import make_executable_schema
 from ariadne.asgi import GraphQL
 from contextlib import asynccontextmanager
 import logging
+import os
 
 from db_connection import ping_mongo_db_server, mongo_connection
 from graph_db_connection import verify_connectivity, driver
@@ -43,10 +44,22 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+def _get_allowed_origins():
+    """Récupère les origines autorisées pour CORS depuis l'environnement."""
+    raw_origins = os.getenv(
+        "CORS_ORIGINS",
+        "http://localhost:3000,http://127.0.0.1:3000",
+    )
+
+    origins = [origin.strip().rstrip("/") for origin in raw_origins.split(",") if origin.strip()]
+    logger.info("Origines CORS autorisées : %s", origins)
+    return origins
+
+
 # Configuration CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=_get_allowed_origins(),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -105,6 +105,17 @@ type_defs = gql("""
         statut: String!
     }
 
+    type TableauBord {
+        hydravions: [Hydravion!]!
+        clients: [Client!]!
+        produits: [Produit!]!
+        commandes: [Commande!]!
+        livraisons: [Livraison!]!
+        lockers: [Locker!]!
+        stocks: [Stock!]!
+        ports: [Port!]!
+    }
+
     # ========== Types Neo4J ==========
 
     type Ile {
@@ -279,6 +290,9 @@ type_defs = gql("""
             port_depart: String!,
             commandes: [String!]!
         ): Itineraire
+
+        # Tableau de bord combiné
+        tableauBord: TableauBord!
     }
 
     # ========== Mutations ==========
