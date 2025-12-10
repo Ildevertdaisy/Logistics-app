@@ -10,9 +10,9 @@ import {
 } from '@apollo/client';
 import './App.css';
 
-// Config Apollo (backend en local)
+// Config Apollo (URL backend configurable via REACT_APP_API_URL)
 const client = new ApolloClient({
-  uri: 'http://localhost:8000/graphql',
+  uri: process.env.REACT_APP_API_URL || 'http://localhost:8000/graphql',
   cache: new InMemoryCache(),
 });
 
