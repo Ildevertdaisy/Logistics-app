@@ -20,29 +20,54 @@ const client = new ApolloClient({
 
 const GET_DASHBOARD = gql`
   query GetDashboard {
-    hydravions {
-      id
-      nom
-      modele
-      statut
-      consommation_carburant
-      port_actuel
-      carburant_actuel
-      capacite_caisses
-    }
-    ports {
-      nom
-      ile
-      nombre_lockers
-      capacite_hydravions
-    }
-    lockers {
-      id
-      numero
-      statut
-      port
-      ile
-      taille_caisse
+    tableauBord {
+      hydravions {
+        id
+        nom
+        modele
+        statut
+        consommation_carburant
+        port_actuel
+        carburant_actuel
+        capacite_caisses
+      }
+      ports {
+        nom
+        ile
+        nombre_lockers
+        capacite_hydravions
+      }
+      lockers {
+        id
+        numero
+        statut
+        port
+        ile
+        taille_caisse
+      }
+      clients {
+        id
+        nom
+        prenom
+        email
+        role
+        organisation
+        ile_principale
+      }
+      produits {
+        id
+        nom
+        categorie
+        stock_disponible
+      }
+      commandes {
+        id
+        statut
+      }
+      livraisons {
+        id
+        statut
+      }
     }
   }
 `;
@@ -171,10 +196,20 @@ function Dashboard() {
     return <p>Erreur : {error.message}</p>;
   }
 
-  const lockersDispo = data.lockers.filter((l) => l.statut === 'vide').length;
-  const totalLockers = data.lockers.length;
+  const dashboard = data?.tableauBord || {
+    hydravions: [],
+    ports: [],
+    lockers: [],
+    clients: [],
+    produits: [],
+    commandes: [],
+    livraisons: [],
+  };
 
-  const hydravionsDispo = data.hydravions.filter(
+  const lockersDispo = dashboard.lockers.filter((l) => l.statut === 'vide').length;
+  const totalLockers = dashboard.lockers.length;
+
+  const hydravionsDispo = dashboard.hydravions.filter(
     (h) => h.statut === 'disponible'
   ).length;
 
@@ -184,7 +219,7 @@ function Dashboard() {
         <div className="stat-card">
           <h3>Flotte</h3>
           <p>
-            {hydravionsDispo} / {data.hydravions.length} disponibles
+            {hydravionsDispo} / {dashboard.hydravions.length} disponibles
           </p>
         </div>
         <div className="stat-card">
@@ -195,20 +230,32 @@ function Dashboard() {
         </div>
         <div className="stat-card">
           <h3>Ports desservis</h3>
-          <p>{data.ports.length} ports</p>
+          <p>{dashboard.ports.length} ports</p>
         </div>
         <div className="stat-card">
           <h3>Capacité totale</h3>
           <p>
-            {data.hydravions.reduce((sum, h) => sum + h.capacite_caisses, 0)}{' '}
+            {dashboard.hydravions.reduce((sum, h) => sum + h.capacite_caisses, 0)}{' '}
             caisses
           </p>
+        </div>
+        <div className="stat-card">
+          <h3>Clients actifs</h3>
+          <p>{dashboard.clients.length} clients</p>
+        </div>
+        <div className="stat-card">
+          <h3>Commandes</h3>
+          <p>{dashboard.commandes.length} enregistrées</p>
+        </div>
+        <div className="stat-card">
+          <h3>Livraisons</h3>
+          <p>{dashboard.livraisons.length} suivies</p>
         </div>
       </div>
 
       <h2>État de la flotte</h2>
       <div className="grid-container">
-        {data.hydravions.map((h) => (
+        {dashboard.hydravions.map((h) => (
           <div
             key={h.id}
             className={`card ${h.statut === 'en_vol' ? 'flying' : 'parked'}`}

@@ -1,3 +1,4 @@
+import asyncio
 from ariadne import QueryType, MutationType, ObjectType
 from bson import ObjectId
 from datetime import datetime
@@ -32,6 +33,14 @@ def serialize_mongo_doc(doc):
         return None
     doc["id"] = str(doc["_id"])
     return doc
+
+
+async def fetch_collection(collection):
+    """Récupère tous les documents d'une collection et sérialise leur identifiant."""
+    documents = []
+    async for doc in collection.find({}):
+        documents.append(serialize_mongo_doc(doc))
+    return documents
 
 
 async def get_client_by_id(db, client_id):
@@ -122,6 +131,44 @@ async def resolve_port_lockers_occupes(obj, info):
 
 
 # ========== Query Resolvers ==========
+
+@query.field("tableauBord")
+async def resolve_tableau_bord(_, info):
+    """Récupère les données combinées MongoDB et Neo4J pour le tableau de bord."""
+    db = get_database()
+
+    (
+        hydravions,
+        clients,
+        produits,
+        commandes,
+        livraisons,
+        lockers,
+        stocks,
+    ) = await asyncio.gather(
+        fetch_collection(db.hydravions),
+        fetch_collection(db.clients),
+        fetch_collection(db.produits),
+        fetch_collection(db.commandes),
+        fetch_collection(db.livraisons),
+        fetch_collection(db.lockers),
+        fetch_collection(db.stocks),
+    )
+
+    with driver.session() as session:
+        ports = session.execute_read(obtenir_tous_les_ports)
+        ports = [dict(p) for p in ports]
+
+    return {
+        "hydravions": hydravions,
+        "clients": clients,
+        "produits": produits,
+        "commandes": commandes,
+        "livraisons": livraisons,
+        "lockers": lockers,
+        "stocks": stocks,
+        "ports": ports,
+    }
 
 # Hydravions
 @query.field("hydravions")
